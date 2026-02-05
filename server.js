@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
 
   // Handle chat messages with streaming
   socket.on('chat', async (data) => {
-    const { model = 'llama3.2', prompt, context = [] } = data;
+    const { model = 'llama3:8b', prompt, context = [] } = data;
 
     try {
       const response = await fetch(`${OLLAMA_HOST}/api/generate`, {
@@ -89,7 +89,7 @@ io.on('connection', (socket) => {
 
   // Handle conversation (chat with message history)
   socket.on('conversation', async (data) => {
-    const { model = 'llama3.2', messages } = data;
+    const { model = 'llama3:8b', messages } = data;
 
     try {
       const response = await fetch(`${OLLAMA_HOST}/api/chat`, {
@@ -139,7 +139,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
   console.log(`Ollama host: ${OLLAMA_HOST}`);
 });
