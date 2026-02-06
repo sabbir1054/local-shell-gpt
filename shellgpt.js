@@ -51,11 +51,15 @@ const printHeader = () => {
 };
 
 const printResponse = (text) => {
+  const width = process.stdout.columns || 80;
+  const topBorder = "┌─ Assistant " + "─".repeat(width - 14);
+  const bottomBorder = "└" + "─".repeat(width - 2);
+
   try {
     const formatted = marked(text);
-    console.log(chalk.green("\n┌─ Assistant ─────────────────────────────"));
+    console.log(chalk.green("\n" + topBorder));
     console.log(formatted.trim());
-    console.log(chalk.green("└─────────────────────────────────────────\n"));
+    console.log(chalk.green(bottomBorder + "\n"));
   } catch (e) {
     console.log(chalk.green("\n" + text + "\n"));
   }

@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build": "pkg shellgpt.js --targets node18-linux-x64,node18-win-x64 --output dist/shellgpt"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -18,5 +22,9 @@
   },
   "bin": {
     "shellgpt": "./shellgpt.js"
+  },
+  "pkg": {
+    "targets": ["node18-linux-x64", "node18-win-x64"],
+    "outputPath": "dist"
   }
 }
